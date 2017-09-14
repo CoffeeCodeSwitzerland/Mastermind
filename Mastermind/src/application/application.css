@@ -1,1 +1,40 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.GameFieldButtons{
+	-fx-min-width: 55;
+	-fx-pref-width: 55;
+	-fx-max-width: 55;
+	
+	-fx-min-height: 55;
+	-fx-pref-height: 55;
+	-fx-max-height: 55;
+}
+
+.ControlFieldButtons{
+	-fx-min-width: 100;
+	-fx-pref-width: 100;
+	-fx-max-width: 100;
+	
+	-fx-min-height: 40;
+	-fx-pref-height: 40;
+	-fx-max-height: 40;
+}
+
+.RightColorButtons{
+	-fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 5px;
+    
+    -fx-min-width: 120;
+	-fx-pref-width: 120;
+	-fx-max-width: 120;
+	
+	-fx-min-height: 50;
+	-fx-pref-height: 50;
+	-fx-max-height: 50;
+}
+
+.GameLabels{
+	-fx-padding: 20px;
+    -fx-border-insets: 20px;
+    -fx-background-insets: 20px;
+}
