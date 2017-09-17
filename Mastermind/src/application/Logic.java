@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
 /**
  * Handling of the view-data
  * @author Philippe Krüttli
@@ -136,6 +141,34 @@ public class Logic
 				back++;
 			}
 		}
+		return back;
+	}
+	
+	public static ArrayList<Integer> getParentIndex(Button b)
+	{
+		ArrayList<Integer> back = new ArrayList<Integer>();
+		HBox hparent = (HBox) b.getParent();
+		VBox vparent = (VBox) hparent.getParent();
+		int buttonPos = 0;
+		int hboxPos = 0;
+		for(Node n:hparent.getChildren())
+		{
+			if(n.equals(b))
+			{
+				break;
+			}
+			buttonPos++;
+		}		
+		for(Node n:vparent.getChildren())
+		{
+			if(n.equals(hparent))
+			{
+				break;
+			}
+			hboxPos++;
+		}
+		back.add(buttonPos);
+		back.add(hboxPos);
 		return back;
 	}
 }

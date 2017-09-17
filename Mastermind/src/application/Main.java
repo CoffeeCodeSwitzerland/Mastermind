@@ -1,6 +1,10 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.geometry.HPos;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -45,6 +49,7 @@ public class Main extends Application {
 				b.getStyleClass().add("GameFieldButtons");
 				b.setShape(new Circle(25));
 				b.setOnAction(e -> {
+					gameFieldButtonHanlder(b);
 					b.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ff0000"), null, null)));
 				});
 				hb.getChildren().add(b);
@@ -98,5 +103,13 @@ public class Main extends Application {
 		layout.getChildren().add(hbTop);
 		layout.getChildren().add(hbBottom);
 		return layout;
+	}
+	
+	
+	private void gameFieldButtonHanlder(Button b)
+	{
+		ArrayList<Integer> out  = new ArrayList<Integer>();
+		out = Logic.getParentIndex(b);
+		System.out.println(out.get(0)+","+out.get(1));
 	}
 }
