@@ -5,8 +5,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Handling of the view-data
+ * @author Philippe Krüttli
+ * @author Frithjof Hoppe
+ *
+ */
+
 public class Logic
 {
+	/**
+	 * Genrate the color-code which the user should guess right
+	 * @param colors
+	 * @param size
+	 * @return arrayList with a secretcode
+	 */
 	public static ArrayList<String> generateSecretCode(ArrayList<String> colors,int size)
 	{
 		ArrayList<String> back = new ArrayList<String>();
@@ -23,6 +36,13 @@ public class Logic
 		return back;
 	}
 
+	/**
+	 * examine if the entered code is equal or similar and return an array with counter of "white" and "black"
+	 * @param guess
+	 * @param soloution
+	 * @param colors
+	 * @return arrayList with count of white and black
+	 */
 	public static ArrayList<String> checkCode(ArrayList<String> guess, ArrayList<String> soloution,
 			ArrayList<String> colors)
 	{
@@ -47,6 +67,12 @@ public class Logic
 		return back;
 	}
 
+	/**
+	 * get the count of colors which are positioned at the same index
+	 * @param guess
+	 * @param soloution
+	 * @return int count of black
+	 */
 	private static int getBlack(ArrayList<String> guess, ArrayList<String> soloution)
 	{
 		int back = 0;
@@ -62,6 +88,13 @@ public class Logic
 		return back;
 	}
 
+	/**
+	 * get the count of colors which are in the guess and the solution, but not at the same index place
+	 * @param guess
+	 * @param soloution
+	 * @param token
+	 * @return int count of white
+	 */
 	private static int getWhite(ArrayList<String> guess, ArrayList<String> soloution, String token)
 	{
 		int back = 0;
@@ -86,6 +119,12 @@ public class Logic
 		return back;
 	}
 
+	/**
+	 * get the count of the appearances in the solution
+	 * @param soloution
+	 * @param token
+	 * @return int count of token in arrayList
+	 */
 	private static int howMany(ArrayList<String> soloution, String token)
 	{
 		int back = 0;
@@ -97,98 +136,6 @@ public class Logic
 				back++;
 			}
 		}
-
-		//System.out.println("how: "+back);
 		return back;
 	}
-
-	// public static ArrayList<String> checkCode(ArrayList<String> input,
-	// ArrayList<String> solution,
-	// ArrayList<String> colors)
-	// {
-	// ArrayList<String> back = new ArrayList<String>();
-	//
-	// int whiteTotal = 0;
-	// int blackTotal = 0;
-	//
-	// for (int a = 0; a < colors.size(); a++) {
-	// if (
-	// contains(solution, colors.get(a))
-	// ) {
-	// String tempColor = "";
-	// ArrayList<String> index = include(solution, colors.get(a));
-	// for (String s : index) {
-	// System.out.println(s);
-	// int pos = Integer.parseInt(s);
-	// if (solution.get(pos).equals(input.get(pos)))
-	// {
-	// blackTotal++;
-	// }
-	// }
-	//
-	// whiteTotal += getWhite(input, a);
-	// }
-	//
-	// }
-	//
-	// back.add("white :" + Integer.toString(whiteTotal));
-	// back.add("black :" + Integer.toString(blackTotal));
-	//
-	// return back;
-	// }
-	//
-	// private static boolean contains(ArrayList<String> input, String actual)
-	// {
-	// boolean back = false;
-	//
-	// for (int a = 0; a < input.size(); a++) {
-	// if (
-	// input.get(a).equals(actual)
-	// ) {
-	// back = true;
-	// break;
-	// }
-	// }
-	//
-	// return back;
-	// }
-	//
-	// private static int getWhite(ArrayList<String> input, int actualPos)
-	// {
-	// int back = 0;
-	// String color = input.get(actualPos);
-	//
-	// for (int a = 0; a < input.size(); a++) {
-	// if (
-	// a != actualPos
-	// ) {
-	// if (
-	// input.get(a).equals(color)
-	// ) {
-	// back++;
-	// }
-	// }
-	// }
-	// System.out.println(back + "|value");
-	// return back;
-	// }
-	//
-	// private static ArrayList<String> include(ArrayList<String> input, String
-	// toMatch)
-	// {
-	// boolean back = false;
-	// ArrayList<String> index = new ArrayList<String>();
-	//
-	// for(int a = 0; a < input.size(); a++)
-	// {
-	//
-	// if(input.get(a).equals(toMatch))
-	// {
-	// index.add(Integer.toString(a));
-	// }
-	// }
-	//
-	//
-	// return index;
-	// }
 }
