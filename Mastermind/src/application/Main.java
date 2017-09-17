@@ -15,6 +15,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -22,6 +23,7 @@ public class Main extends Application {
 	
 	private ArrayList<String> colors = new ArrayList<String>();
 	private ArrayList<String> guess = new ArrayList<String>();
+	private ArrayList<String> soloution = new ArrayList<String>();
 	private static Button actualButton = new Button();
 	private static HBox actualHBox = new HBox();
 	
@@ -53,8 +55,10 @@ public class Main extends Application {
 		colors.add("#22ef1f"); //Grün
 		colors.add("#1f76ef"); //Blau
 		colors.add("#efef1f"); //Gelb
-		colors.add("#aa1fef"); //Violett
+		colors.add("#aa1fe7"); //Violett
 		colors.add("#ef8e1f"); //Orange
+		
+		soloution = Logic.generateSecretCode(colors, 4);
 	}
 	
 	private VBox createGameField() {
@@ -132,6 +136,23 @@ public class Main extends Application {
 		return layout;
 	}
 	
+	private ArrayList<String> createGuess()
+	{
+		ArrayList<String> back = new ArrayList<String>();
+		
+		int counter = 0;
+		for(Node n: actualHBox.getChildren())
+		{
+			if(counter < 4)
+			{
+				//System.out.println(View.getHex(((Button)n)));
+				back.add(View.getHex(((Button)n)));
+			}
+			counter++;
+		}
+		
+		return back;
+	}
 	
 	private void controlFieldHandler(Button b)
 	{
@@ -141,11 +162,15 @@ public class Main extends Application {
 		}
 		else if(b.getText() == "Prüfen")
 		{
-			
+			ArrayList<String> result = new ArrayList<String>();
+			createGuess();
+			result = Logic.checkCode(createGuess(), soloution, colors);
+			System.out.println(result.get(0));
+			System.out.println(result.get(1));
 		}
 		else
 		{
-			Logic.setButtonColor(actualButton,b,colors);
+			View.setButtonColor(actualButton,b,colors);
 //			actualButton.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ff0000"), null, null)));
 		}
 	}
@@ -153,6 +178,7 @@ public class Main extends Application {
 	private void gameFieldButtonHanlder(Button b)
 	{
 		actualButton = b;
+		actualHBox=(HBox)b.getParent();
 		ArrayList<Integer> out  = new ArrayList<Integer>();
 		out = Logic.getParentIndex(b);
 		System.out.println(out.get(0)+","+out.get(1));

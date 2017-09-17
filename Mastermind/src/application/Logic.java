@@ -38,6 +38,7 @@ public class Logic
 		for (int a = 0; a < size; a++) {
 			int colorNumber = 0;
 			colorNumber = rnd.nextInt(max - min) + min;
+			System.out.println("Geheim: "+Integer.toString(colorNumber));
 			back.add(colors.get(colorNumber));
 		}
 
@@ -51,8 +52,7 @@ public class Logic
 	 * @param colors
 	 * @return arrayList with count of white and black
 	 */
-	public static ArrayList<String> checkCode(ArrayList<String> guess, ArrayList<String> soloution,
-			ArrayList<String> colors)
+	public static ArrayList<String> checkCode(ArrayList<String> guess, ArrayList<String> soloution,ArrayList<String> colors)
 	{
 		ArrayList<String> back = new ArrayList<String>(); 
 		int white = 0;
@@ -147,31 +147,7 @@ public class Logic
 		return back;
 	}
 	
-	public static boolean setButtonColor(Button b,Button toTake, ArrayList<String> color)
-	{
-		boolean success = false;
-		String back = "";
-		
-		switch(toTake.getText())
-		{
-		case "Rot": back=color.get(0); break;
-		case "Grün":back=color.get(1);break;
-		case "Blau":back=color.get(2);break;
-		case "Gelb":back=color.get(3);break;
-		case "Violett":back=color.get(4);break;
-		case "Orange":back=color.get(5);break;
-		default:break;
-		}
-		
-		b.setBackground(new Background(new BackgroundFill(Paint.valueOf(back), null, null)));
-		
-		if(back != "")
-		{
-			success = true;
-		}
-		
-		return success;
-	}
+ 
 	
 	public static ArrayList<Integer> getParentIndex(Button b)
 	{
