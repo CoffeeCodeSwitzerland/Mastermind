@@ -7,8 +7,11 @@ import java.util.Random;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 
 /**
  * Handling of the view-data
@@ -142,6 +145,32 @@ public class Logic
 			}
 		}
 		return back;
+	}
+	
+	public static boolean setButtonColor(Button b,Button toTake, ArrayList<String> color)
+	{
+		boolean success = false;
+		String back = "";
+		
+		switch(toTake.getText())
+		{
+		case "Rot": back=color.get(0); break;
+		case "Grün":back=color.get(1);break;
+		case "Blau":back=color.get(2);break;
+		case "Gelb":back=color.get(3);break;
+		case "Violett":back=color.get(4);break;
+		case "Orange":back=color.get(5);break;
+		default:break;
+		}
+		
+		b.setBackground(new Background(new BackgroundFill(Paint.valueOf(back), null, null)));
+		
+		if(back != "")
+		{
+			success = true;
+		}
+		
+		return success;
 	}
 	
 	public static ArrayList<Integer> getParentIndex(Button b)

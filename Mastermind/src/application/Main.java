@@ -19,15 +19,22 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class Main extends Application {
+	
+	private ArrayList<String> colors = new ArrayList<String>();
+	private ArrayList<String> guess = new ArrayList<String>();
+	private static Button actualButton = new Button();
+	private static HBox actualHBox = new HBox();
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			initialize();
 			BorderPane root = new BorderPane();
 			VBox gameField = createGameField();
 			VBox controlField = createControlField();
 			root.setCenter(gameField);
 			root.setBottom(controlField);
-			Scene scene = new Scene(root, 500, 800);
+			Scene scene = new Scene(root, 500, 900);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -39,7 +46,17 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	
+	private void initialize()
+	{
+		colors.add("#ef4f1f"); //Rot
+		colors.add("#22ef1f"); //Grün
+		colors.add("#1f76ef"); //Blau
+		colors.add("#efef1f"); //Gelb
+		colors.add("#aa1fef"); //Violett
+		colors.add("#ef8e1f"); //Orange
+	}
+	
 	private VBox createGameField() {
 		VBox layout = new VBox();
 		for (int i = 0; i < 12; i++) {
@@ -50,7 +67,7 @@ public class Main extends Application {
 				b.setShape(new Circle(25));
 				b.setOnAction(e -> {
 					gameFieldButtonHanlder(b);
-					b.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ff0000"), null, null)));
+					//b.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ff0000"), null, null)));
 				});
 				hb.getChildren().add(b);
 			}
@@ -61,7 +78,7 @@ public class Main extends Application {
 		}
 		return layout;
 	}
-
+	
 	private VBox createControlField() {
 		VBox layout = new VBox();
 		HBox hbTop = new HBox();
@@ -73,8 +90,8 @@ public class Main extends Application {
 		hbTop.getChildren().add(new Button("Prüfen"));
 
 		hbBottom.getChildren().add(new Button("Gelb"));
-		hbBottom.getChildren().add(new Button("Weiss"));
-		hbBottom.getChildren().add(new Button("Schwarz"));
+		hbBottom.getChildren().add(new Button("Violett"));
+		hbBottom.getChildren().add(new Button("Orange"));
 		hbBottom.getChildren().add(new Button("Beenden"));
 		
 		int count = 0;
@@ -85,6 +102,11 @@ public class Main extends Application {
 				b.getStyleClass().add("RightColorButtons");
 			}
 			b.getStyleClass().add("ControlFieldButtons");
+			
+			((Button)b).setOnAction(e -> {
+				controlFieldHandler((Button)b);
+			});
+			
 			count++;
 		}
 		
@@ -97,6 +119,11 @@ public class Main extends Application {
 				b.getStyleClass().add("RightColorButtons");
 			}
 			b.getStyleClass().add("ControlFieldButtons");
+			
+			((Button)b).setOnAction(e -> {
+				controlFieldHandler((Button)b);
+			});
+			
 			count++;
 		}
 
@@ -106,8 +133,26 @@ public class Main extends Application {
 	}
 	
 	
+	private void controlFieldHandler(Button b)
+	{
+		if(b.getText() == "Beenden")
+		{
+			System.exit(0);
+		}
+		else if(b.getText() == "Prüfen")
+		{
+			
+		}
+		else
+		{
+			Logic.setButtonColor(actualButton,b,colors);
+//			actualButton.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ff0000"), null, null)));
+		}
+	}
+	
 	private void gameFieldButtonHanlder(Button b)
 	{
+		actualButton = b;
 		ArrayList<Integer> out  = new ArrayList<Integer>();
 		out = Logic.getParentIndex(b);
 		System.out.println(out.get(0)+","+out.get(1));
