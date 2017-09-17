@@ -16,20 +16,42 @@ public class TestLogic {
 		testColor.add("6");
 		
 		ArrayList<String> testGuess = new ArrayList<String>();
-		testGuess.add("5");
-		testGuess.add("2");
-		testGuess.add("6");
-		testGuess.add("4");
-		testGuess.add("3");
 		testGuess.add("1");
+		testGuess.add("2");
+		testGuess.add("3");
+		testGuess.add("4");
+//		testGuess.add("3");
+//		testGuess.add("1");
 		
 		ArrayList<String> testSolution = new ArrayList<String>();
-		testSolution = Logic.generateSecretCode(testColor);
+//		testSolution.add("2");
+//		testSolution.add("1");
+//		testSolution.add("3");
+//		testSolution.add("3");
+		testSolution = Logic.generateSecretCode(testColor,4);
 		
 		
-		for(String s: Logic.checkCode(testGuess, testSolution, testColor))
+		String guess = "";
+		String solution = "";
+		
+		for(String s: testSolution)
 		{
-			
+			solution+=s;
+		}
+		
+		for(String s: testGuess)
+		{
+			guess+=s;
+		}
+		
+		System.out.println("lösung :"+solution);
+		System.out.println("geraten:"+guess);
+		
+		System.out.println("Lösung");
+		
+		for(String s: Logic.checkCode(testGuess, testSolution,testColor))
+		{
+			System.out.println(s);
 		}
 	}
 
