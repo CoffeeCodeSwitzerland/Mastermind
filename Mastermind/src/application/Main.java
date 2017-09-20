@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -26,11 +27,13 @@ public class Main extends Application {
 	private ArrayList<String> soloution = new ArrayList<String>();
 	private static Button actualButton = new Button();
 	private static HBox actualHBox = new HBox();
+	private static Label actualLabel = new Label();
+	private static VBox actualVBox = new VBox();
+	private int actualRow = 0;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			initialize();
 			BorderPane root = new BorderPane();
 			VBox gameField = createGameField();
 			VBox controlField = createControlField();
@@ -40,6 +43,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			initialize();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -59,10 +63,13 @@ public class Main extends Application {
 		colors.add("#ef8e1f"); //Orange
 		
 		soloution = Logic.generateSecretCode(colors, 4);
+		actualHBox = View.getHBoxOfIndex(actualVBox.getChildren().size()-1, actualVBox);
+		actualRow = actualVBox.getChildren().size()-1;
 	}
 	
 	private VBox createGameField() {
 		VBox layout = new VBox();
+		actualVBox = layout;
 		for (int i = 0; i < 12; i++) {
 			HBox hb = new HBox();
 			for (int j = 0; j < 4; j++) {
@@ -151,36 +158,74 @@ public class Main extends Application {
 			counter++;
 		}
 		
+		
 		return back;
 	}
 	
 	private void controlFieldHandler(Button b)
 	{
+		if(b != null)
+		{
 		if(b.getText() == "Beenden")
 		{
-			System.exit(0);
+			if(View.msgExitRequest())
+			{
+				System.exit(0);
+			}
 		}
 		else if(b.getText() == "Prüfen")
 		{
-			ArrayList<String> result = new ArrayList<String>();
-			createGuess();
-			result = Logic.checkCode(createGuess(), soloution, colors);
-			System.out.println(result.get(0));
-			System.out.println(result.get(1));
+			if(View.isColorsSetted(actualHBox))
+			{
+				ArrayList<String> result = new ArrayList<String>();
+				createGuess();
+				result = Logic.checkCode(createGuess(), soloution, colors);
+				View.setLabelResult(result.get(0), result.get(1), actualLabel);
+				actualButton = null;
+				if(actualRow != 0)
+				{
+					if(result.get(1).equals("4"))
+					{
+						View.msgWinningInformation((11-actualRow)+1);
+						System.exit(0);
+					}
+					else
+					{
+						actualRow--;
+						actualHBox = View.getHBoxOfIndex(actualRow, actualVBox);
+					}
+				}
+			}
+			else
+			{
+				System.out.println("Farben wurden nicht gesetzt");
+			}
 		}
 		else
 		{
 			View.setButtonColor(actualButton,b,colors);
 //			actualButton.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ff0000"), null, null)));
 		}
+		}
 	}
+	
+	
 	
 	private void gameFieldButtonHanlder(Button b)
 	{
-		actualButton = b;
-		actualHBox=(HBox)b.getParent();
-		ArrayList<Integer> out  = new ArrayList<Integer>();
-		out = Logic.getParentIndex(b);
-		System.out.println(out.get(0)+","+out.get(1));
+		System.out.println("allos");
+		if(View.isChildOfHBox(b, actualHBox))
+		{
+			actualButton = b;
+			actualHBox=(HBox)b.getParent();
+			actualLabel = View.getLabel(actualHBox);
+			ArrayList<Integer> out  = new ArrayList<Integer>();
+			out = Logic.getParentIndex(b);
+			System.out.println(out.get(0)+","+out.get(1));
+		}
+		else
+		{
+			System.out.println("Falsche reihe");
+		}
 	}
 }

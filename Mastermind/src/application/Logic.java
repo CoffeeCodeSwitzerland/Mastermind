@@ -3,10 +3,14 @@ package application;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Random;
 
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
@@ -33,7 +37,7 @@ public class Logic
 		ArrayList<String> back = new ArrayList<String>();
 		Random rnd = new Random();
 		int min = 0;
-		int max = 3; 
+		int max = 6; 
 
 		for (int a = 0; a < size; a++) {
 			int colorNumber = 0;
@@ -70,8 +74,8 @@ public class Logic
 
 		black += getBlack(guess, soloution);
 		
-		back.add("white:"+Integer.toString(white));
-		back.add("black:"+Integer.toString(black));
+		back.add(Integer.toString(white));
+		back.add(Integer.toString(black));
 		return back;
 	}
 
@@ -147,7 +151,8 @@ public class Logic
 		return back;
 	}
 	
- 
+
+	
 	
 	public static ArrayList<Integer> getParentIndex(Button b)
 	{
