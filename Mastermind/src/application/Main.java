@@ -191,7 +191,15 @@ public class Main extends Application {
 					if(result.get(1).equals("4"))
 					{
 						View.msgWinningInformation((11-actualRow)+1);
-						System.exit(0);
+				
+						if(View.msgPlayAgain())
+						{
+							System.out.println("remain");
+						}
+						else
+						{
+							System.exit(0);
+						}
 					}
 					else
 					{

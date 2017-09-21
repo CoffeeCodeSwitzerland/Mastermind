@@ -208,6 +208,30 @@ public class View
 		alert.showAndWait();
 	}
 	
+	public static boolean msgPlayAgain()
+	{
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Question Dialog");
+		alert.setHeaderText("Game Finished");
+		alert.setContentText("Do you want to play new game. If not the programm will close");
+		
+		boolean back = false;
+		
+		ButtonType buttonTypeOne = new ButtonType("Yes");
+		ButtonType buttonTypeTwo = new ButtonType("No");
+		
+		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if(result.get() == buttonTypeOne)
+		{
+			back = true;
+		}
+		
+		return back;
+	}
+	
 	public static void msgWinningInformation(int count)
 	{
 		String text = "You win the game with >"+count;
