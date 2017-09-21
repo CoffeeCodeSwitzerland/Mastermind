@@ -73,26 +73,6 @@ public class View
 		label.setText(text);
 	}
 
-	// public static String getButtonHEXColor(Button toTake, ArrayList<String>
-	// color)
-	// {
-	//
-	// String back = "";
-	//
-	// switch(toTake.getText())
-	// {
-	// case "Rot": back=color.get(0); break;
-	// case "Grün":back=color.get(1);break;
-	// case "Blau":back=color.get(2);break;
-	// case "Gelb":back=color.get(3);break;
-	// case "Violett":back=color.get(4);break;
-	// case "Orange":back=color.get(5);break;
-	// default:break;
-	// }
-	//
-	// return back;
-	// }
-
 	/**
 	 * get a hexadecimal string
 	 * 
@@ -109,7 +89,8 @@ public class View
 		back = "#" + back;
 		return back;
 	}
-
+	
+	
 	public static boolean isColorsSetted(HBox box)
 	{
 		boolean back = true;
