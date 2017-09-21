@@ -66,6 +66,9 @@ public class Main extends Application {
 		solution = Logic.generateSecretCode(colors, 4);
 		actualHBox = View.getHBoxOfIndex(actualVBox.getChildren().size()-1, actualVBox);
 		actualRow = actualVBox.getChildren().size()-1;
+		actualButton = View.getFirstHBoxButton(actualHBox);
+		actualLabel = View.getLabel(actualHBox);
+		actualButton.requestFocus();
 	}
 	
 	private VBox createGameField() {
@@ -195,19 +198,21 @@ public class Main extends Application {
 						actualRow--;
 						actualHBox = View.getHBoxOfIndex(actualRow, actualVBox);
 						actualButton = View.getFirstHBoxButton(actualHBox);
+						actualButton.requestFocus();
 						actualLabel = View.getLabel(actualHBox);
 					}
 				}
 			}
 			else
 			{
-				System.out.println("Farben wurden nicht gesetzt");
+				View.msgColorNotSet();
 			}
 		}
 		else
 		{
 			View.setButtonColor(actualButton,b,colors);
 			actualButton = View.getNextSibling(actualButton, actualHBox);
+			actualButton.requestFocus();
 //			actualButton.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ff0000"), null, null)));
 		}
 		}

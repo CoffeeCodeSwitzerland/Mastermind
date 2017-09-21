@@ -198,6 +198,16 @@ public class View
 		return back;
 	}
 	
+	public static void msgColorNotSet()
+	{
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Warning Dialog");
+		alert.setHeaderText("Color not set");
+		alert.setContentText("Not every buttoncolor of the actual move has been set");
+
+		alert.showAndWait();
+	}
+	
 	public static void msgWinningInformation(int count)
 	{
 		String text = "You win the game with >"+count;
