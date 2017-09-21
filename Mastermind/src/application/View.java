@@ -176,7 +176,7 @@ public class View
 	
 	public static void msgWinningInformation(int count)
 	{
-		String text = "You've win the game with >"+count;
+		String text = "You win the game with >"+count;
 		
 		if(count == 1)
 		{
