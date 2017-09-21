@@ -132,7 +132,7 @@ public class View
 	 */
 	public static Button getNextSibling(Button b,HBox box)
 	{
-		Button back = new Button();
+		Button back = null;
 		int count = 0;
 		
 		for(Node n: box.getChildren())
@@ -143,12 +143,36 @@ public class View
 				{
 					if(count < box.getChildren().size())
 					{
-						back = (Button)box.getChildren().get(count+1);
+						if (box.getChildren().get(count+1) instanceof Button)
+						{
+							back = (Button)box.getChildren().get(count+1);
+						}
 					}
 				}
 			}
 			
 			count++;
+		}
+		
+		if(back == null)
+		{
+			back = b;
+		}
+		
+		return back;
+	}
+	
+	public static Button getFirstHBoxButton(HBox box)
+	{
+		Button back = new Button();
+		
+		for(Node n: box.getChildren())
+		{
+			if(n instanceof Button)
+			{
+				back = (Button)n;
+				break;
+			}
 		}
 		
 		return back;

@@ -194,6 +194,8 @@ public class Main extends Application {
 					{
 						actualRow--;
 						actualHBox = View.getHBoxOfIndex(actualRow, actualVBox);
+						actualButton = View.getFirstHBoxButton(actualHBox);
+						actualLabel = View.getLabel(actualHBox);
 					}
 				}
 			}
@@ -205,6 +207,7 @@ public class Main extends Application {
 		else
 		{
 			View.setButtonColor(actualButton,b,colors);
+			actualButton = View.getNextSibling(actualButton, actualHBox);
 //			actualButton.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ff0000"), null, null)));
 		}
 		}
