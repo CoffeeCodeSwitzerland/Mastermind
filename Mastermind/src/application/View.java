@@ -124,6 +124,36 @@ public class View
 		return hparent;
 	}
 
+	/**
+	 * get the right sibling of a button into a hbox
+	 * @param b
+	 * @param box
+	 * @return
+	 */
+	public static Button getNextSibling(Button b,HBox box)
+	{
+		Button back = new Button();
+		int count = 0;
+		
+		for(Node n: box.getChildren())
+		{
+			if(n instanceof Button)
+			{
+				if(((Button)n).equals(b))
+				{
+					if(count < box.getChildren().size())
+					{
+						back = (Button)box.getChildren().get(count+1);
+					}
+				}
+			}
+			
+			count++;
+		}
+		
+		return back;
+	}
+	
 	public static boolean msgExitRequest()
 	{
 		boolean back = false;
