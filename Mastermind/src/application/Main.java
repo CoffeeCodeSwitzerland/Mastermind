@@ -24,7 +24,7 @@ public class Main extends Application {
 	
 	private ArrayList<String> colors = new ArrayList<String>();
 	private ArrayList<String> guess = new ArrayList<String>();
-	private ArrayList<String> soloution = new ArrayList<String>();
+	private ArrayList<String> solution = new ArrayList<String>();
 	private static Button actualButton = new Button();
 	private static HBox actualHBox = new HBox();
 	private static Label actualLabel = new Label();
@@ -62,7 +62,7 @@ public class Main extends Application {
 		colors.add("#aa1fe7"); //Violett
 		colors.add("#ef8e1f"); //Orange
 		
-		soloution = Logic.generateSecretCode(colors, 4);
+		solution = Logic.generateSecretCode(colors, 4);
 		actualHBox = View.getHBoxOfIndex(actualVBox.getChildren().size()-1, actualVBox);
 		actualRow = actualVBox.getChildren().size()-1;
 	}
@@ -179,7 +179,7 @@ public class Main extends Application {
 			{
 				ArrayList<String> result = new ArrayList<String>();
 				createGuess();
-				result = Logic.checkCode(createGuess(), soloution, colors);
+				result = Logic.checkCode(createGuess(), solution, colors);
 				View.setLabelResult(result.get(0), result.get(1), actualLabel);
 				actualButton = null;
 				if(actualRow != 0)
