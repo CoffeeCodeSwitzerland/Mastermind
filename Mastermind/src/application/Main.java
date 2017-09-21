@@ -82,7 +82,7 @@ public class Main extends Application {
 				});
 				hb.getChildren().add(b);
 			}
-			Label lbl = new Label("Test");
+			Label lbl = new Label("");
 			lbl.getStyleClass().add("GameLabels");
 			hb.getChildren().add(lbl);
 			layout.getChildren().add(hb);
