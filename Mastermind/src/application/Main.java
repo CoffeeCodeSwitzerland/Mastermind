@@ -42,6 +42,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root, 500, 900);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setOnHiding( event -> {View.msgExitRequest();} );
 			primaryStage.show();
 			initialize();
 		} catch (Exception e) {
