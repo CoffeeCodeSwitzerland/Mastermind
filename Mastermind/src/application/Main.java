@@ -196,7 +196,7 @@ public class Main extends Application {
 				
 						if(View.msgPlayAgain())
 						{
-							System.out.println("remain");
+							initialize();
 						}
 						else
 						{

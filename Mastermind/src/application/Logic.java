@@ -65,13 +65,15 @@ public class Logic {
 		int white = 0;
 		int black = 0;
 
-		black += getBlack(guess, soloution);
+		
 		
 		for (int b = 0; b < colors.size(); b++) {
 
 			String token = colors.get(b);
 			if (howMany(soloution, token) > 0) {
-				white += getWhite(guess, soloution, token,black);
+				int blackActual = getBlack(guess, soloution,token);
+				black += blackActual;
+				white += getWhite(guess, soloution, token,blackActual);
 			}
 		}
 
@@ -88,12 +90,15 @@ public class Logic {
 	 * @param soloution
 	 * @return int count of black
 	 */
-	private static int getBlack(ArrayList<String> guess, ArrayList<String> soloution) {
+	private static int getBlack(ArrayList<String> guess, ArrayList<String> soloution,String token) {
 		int back = 0;
 
 		for (int a = 0; a < soloution.size(); a++) {
+			if(guess.get(a).equals(token))
+			{
 			if (guess.get(a).equals(soloution.get(a))) {
 				back++;
+			}
 			}
 		}
 
@@ -113,12 +118,12 @@ public class Logic {
 		int back = 0;
 		int count = howMany(soloution, token);
 		int hits = 0;
-		if (black != count) {
+		if (black < count) {
 			for (int a = 0; a < soloution.size(); a++) {
 				if (guess.get(a).equals(token)) {
 					hits++;
 					if (!soloution.get(a).equals(token)) {
-						if (hits < count) {
+						if (hits <= count) {
 							back++;
 						}
 					}
