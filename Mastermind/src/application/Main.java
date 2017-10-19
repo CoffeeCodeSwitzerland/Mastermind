@@ -56,6 +56,7 @@ public class Main extends Application {
 	
 	private void initialize()
 	{
+		colors.clear();	
 		colors.add("#ef4f1f"); //Rot
 		colors.add("#22ef1f"); //Grün
 		colors.add("#1f76ef"); //Blau
@@ -69,6 +70,7 @@ public class Main extends Application {
 		actualButton = View.getFirstHBoxButton(actualHBox);
 		actualLabel = View.getLabel(actualHBox);
 		actualButton.requestFocus();
+		Logic.resetView(actualVBox);
 	}
 	
 	private VBox createGameField() {
@@ -208,6 +210,35 @@ public class Main extends Application {
 						actualButton = View.getFirstHBoxButton(actualHBox);
 						actualButton.requestFocus();
 						actualLabel = View.getLabel(actualHBox);
+					}
+				}
+				else
+				{
+					if(result.get(1).equals("4"))
+					{
+						View.msgWinningInformation((11-actualRow)+1);
+				
+						if(View.msgPlayAgain())
+						{
+							System.out.println("remain");
+							initialize();
+						}
+						else
+						{
+							System.exit(0);
+						}
+					}
+					else
+					{
+						View.msgGameFinnished();
+						if(View.msgPlayAgain())
+						{
+							initialize();
+						}
+						else
+						{
+							System.exit(0);
+						}
 					}
 				}
 			}

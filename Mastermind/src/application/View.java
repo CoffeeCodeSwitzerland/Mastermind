@@ -83,7 +83,7 @@ public class View
 	{
 		String back = "";
 		// 0xef4f1fff
-		Color color = (Color) b.getBackground().getFills().get(0).getFill();
+		Color color = (Color)b.getBackground().getFills().get(0).getFill();
 		back = color.toString();
 		back = back.substring(2, 8);
 		back = "#" + back;
@@ -98,14 +98,14 @@ public class View
 			if (
 					n instanceof Button
 				) {
-				Color color = (Color) ((Button) n).getBackground().getFills().get(0).getFill();
+				String color = ((Button) n).getBackground().getFills().get(0).getFill().toString();
 				System.out.println(color.toString());
 				if (
-					color.toString().equals("0xffffffba")
+					color.equals("0xd8d8d8ff")
 				) {
 					back = false;
 				}
-			}
+			} //color.toString().equals("0xffffffba")
 		}
 
 		return back;
@@ -230,6 +230,15 @@ public class View
 		}
 		
 		return back;
+	}
+	
+	public static void msgGameFinnished()
+	{
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Play status");
+		alert.setHeaderText("Finish");
+		alert.setContentText("You lost the game!!");
+		alert.showAndWait();
 	}
 	
 	public static void msgWinningInformation(int count)
