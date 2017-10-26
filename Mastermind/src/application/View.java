@@ -17,6 +17,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
+/**
+ * Is an utility to modify and handle function which are belonging to the view
+ * @author Philippe Krüttli
+ * @author Frithjof Hoppe
+ *
+ */
 public class View
 {
 	/**
@@ -67,6 +73,12 @@ public class View
 		return success;
 	}
 
+	/**
+	 * set the result of a Label
+	 * @param white
+	 * @param black
+	 * @param label
+	 */
 	public static void setLabelResult(String white, String black, Label label)
 	{
 		String text = "W:" + white + " B:" + black;
@@ -90,7 +102,11 @@ public class View
 		return back;
 	}
 	
-	
+	/**
+	 * checks if every button of a hbox is setted
+	 * @param box
+	 * @return boolean
+	 */
 	public static boolean isColorsSetted(HBox box)
 	{
 		boolean back = true;
@@ -115,7 +131,7 @@ public class View
 	 * return the parent HBox from the input button
 	 * 
 	 * @param b
-	 * @return
+	 * @return HBox
 	 */
 	public static HBox getHBoxOfButton(Button b)
 	{
@@ -128,7 +144,7 @@ public class View
 	 * get the right sibling of a button into a hbox
 	 * @param b
 	 * @param box
-	 * @return
+	 * @return Button
 	 */
 	public static Button getNextSibling(Button b,HBox box)
 	{
@@ -162,6 +178,11 @@ public class View
 		return back;
 	}
 	
+	/**
+	 * returns the first button of a hbox
+	 * @param box
+	 * @return Button
+	 */
 	public static Button getFirstHBoxButton(HBox box)
 	{
 		Button back = new Button();
@@ -178,6 +199,10 @@ public class View
 		return back;
 	}
 	
+	/**
+	 * opens a messeage box, which shows an exit request
+	 * @return boolean
+	 */
 	public static boolean msgExitRequest()
 	{
 		boolean back = false;
@@ -198,6 +223,9 @@ public class View
 		return back;
 	}
 	
+	/**
+	 * opens a message box, which shows an information that not every color has be set
+	 */
 	public static void msgColorNotSet()
 	{
 		Alert alert = new Alert(AlertType.WARNING);
@@ -208,6 +236,10 @@ public class View
 		alert.showAndWait();
 	}
 	
+	/**
+	 * opens a message box, which asks if the player would play again
+	 * @return boolean
+	 */
 	public static boolean msgPlayAgain()
 	{
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -232,6 +264,9 @@ public class View
 		return back;
 	}
 	
+	/**
+	 * opens a message box, that the game has been finished
+	 */
 	public static void msgGameFinnished()
 	{
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -241,6 +276,10 @@ public class View
 		alert.showAndWait();
 	}
 	
+	/**
+	 * opens a message box, that shows that the game has been won
+	 * @param count
+	 */
 	public static void msgWinningInformation(int count)
 	{
 		String text = "You win the game with >"+count;
@@ -261,7 +300,14 @@ public class View
 
 		alert.showAndWait();
 	}
-
+	
+	/**
+	 * get specific hBox object of the VBox parent 
+	 *  
+	 * @param i: index
+	 * @param parent
+	 * @return HBox
+	 */
 	public static HBox getHBoxOfIndex(int i, VBox parent)
 	{
 		return (HBox) parent.getChildren().get(i);
@@ -284,6 +330,11 @@ public class View
 		return back;
 	}
 
+	/**
+	 * get the label of a HBox
+	 * @param box
+	 * @return Label
+	 */
 	public static Label getLabel(HBox box)
 	{
 		Label back = new Label();

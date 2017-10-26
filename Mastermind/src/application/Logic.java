@@ -19,8 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 
 /**
- * Handling of the view-data
- * 
+ * Is an utility that contains the logical operations of the game
  * @author Philippe Krüttli
  * @author Frithjof Hoppe
  *
@@ -152,6 +151,10 @@ public class Logic {
 		return back;
 	}
 
+	/**
+	 * resets the view and 
+	 * @param box
+	 */
 	public static void resetView(VBox box) {
 		for (Node hbox : box.getChildren()) {
 			for (Node element : ((HBox) hbox).getChildren()) {
